@@ -1,63 +1,33 @@
 package tetromino;
 
+import board.Board;
 import point.Point;
 
 public class TetrominoT extends Tetromino{
 
-    private final static Point[][] blocks;
+    private final static Point[][] BLOCKS_T;
 
     static {
-        blocks = new Point[4][4];
-        initBlocks();
+        BLOCKS_T = new Point[4][4];
+        initBlocksT();
     }
 
-    @Override
-    Point[] rotateClockwise() {
-        rotateIdx = (rotateIdx + 1) % blocks.length;
-        return blocks[rotateIdx];
+    public TetrominoT(Board board) {
+        super(board);
+        blocks = BLOCKS_T;
     }
 
-    @Override
-    Point[] rotateAnticlockwise() {
-        if (rotateIdx == 0)
-            rotateIdx = blocks.length - 1;
-        else
-            rotateIdx--;
-        return blocks[rotateIdx];
-    }
-
-    @Override
-    Point[] moveRight() {
-        return new Point[0];
-    }
-
-    @Override
-    Point[] moveLeft() {
-        return new Point[0];
-    }
-
-    @Override
-    Point[] moveDown() {
-        return new Point[0];
-    }
-
-    @Override
-    Point[] drop() {
-        return new Point[0];
-    }
-
-    private static void initBlocks() {
-
-        blocks[0] = new Point[]
+    private static void initBlocksT() {
+        BLOCKS_T[0] = new Point[]
                 {new Point(0, 0), new Point(0, -1), new Point(-1, 0), new Point(0, 1)};
 
-        blocks[1] = new Point[]
+        BLOCKS_T[1] = new Point[]
                 {new Point(0, 0), new Point(-1, 0), new Point(0, 1), new Point(1, 0)};
 
-        blocks[2] = new Point[]
+        BLOCKS_T[2] = new Point[]
                 {new Point(0, 0), new Point(0, -1), new Point(1, 0), new Point(0, 1)};
 
-        blocks[3] = new Point[]
+        BLOCKS_T[3] = new Point[]
                 {new Point(0, 0), new Point(-1, 0), new Point(0, -1), new Point(1, 0)};
     }
 }

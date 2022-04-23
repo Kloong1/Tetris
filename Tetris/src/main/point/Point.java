@@ -1,5 +1,7 @@
 package point;
 
+import java.util.Objects;
+
 public class Point {
     private int row;
     private int col;
@@ -23,5 +25,23 @@ public class Point {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public void addRow(int row) {
+        this.row += row;
+    }
+
+    public void addCol(int col) {
+        this.col += col;
+    }
+
+    //for test
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Point))
+            return false;
+
+        Point p = (Point)o;
+        return this.row == p.row && this.col == p.col;
     }
 }

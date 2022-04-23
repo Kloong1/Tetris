@@ -1,48 +1,34 @@
 package tetromino;
 
+import board.Board;
 import point.Point;
 
 public class TetrominoO extends Tetromino{
 
-    private final static Point[][] blocks;
+    private final static Point[][] BLOCKS_O;
 
     static {
-        blocks = new Point[1][4];
-        initBlocks();
+        BLOCKS_O = new Point[1][4];
+        initBlocksO();
+    }
+
+    public TetrominoO(Board board) {
+        super(board);
+        blocks = BLOCKS_O;
     }
 
     @Override
-    Point[] rotateClockwise() {
-        return blocks[0];
+    public Point[] rotateClockwise() {
+        return getPoints();
     }
 
     @Override
-    Point[] rotateAnticlockwise() {
-        return blocks[0];
+    public Point[] rotateAnticlockwise() {
+        return getPoints();
     }
 
-    @Override
-    Point[] moveRight() {
-        return new Point[0];
-    }
-
-    @Override
-    Point[] moveLeft() {
-        return new Point[0];
-    }
-
-    @Override
-    Point[] moveDown() {
-        return new Point[0];
-    }
-
-    @Override
-    Point[] drop() {
-        return new Point[0];
-    }
-
-    private static void initBlocks() {
-        blocks[0] = new Point[]
+    private static void initBlocksO() {
+        BLOCKS_O[0] = new Point[]
                 {new Point(0, 0), new Point(0, 1), new Point(1, 0), new Point(1, 1)};
     }
 }
