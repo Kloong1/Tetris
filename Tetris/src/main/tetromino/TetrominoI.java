@@ -15,6 +15,7 @@ public class TetrominoI extends Tetromino{
     public TetrominoI(Board board) {
         super(board);
         blocks = BLOCKS_I;
+        initPoints();
     }
 
     private static void initBlocksI() {

@@ -15,6 +15,7 @@ public class TetrominoO extends Tetromino{
     public TetrominoO(Board board) {
         super(board);
         blocks = BLOCKS_O;
+        initPoints();
     }
 
     @Override

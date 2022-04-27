@@ -15,7 +15,9 @@ public class Tetromino {
     protected Tetromino(Board board) {
         this.board = board;
         this.centerPoint = new Point(1, 5);
+    }
 
+    protected void initPoints() {
         points = new Point[4];
         for (int i = 0; i < 4; i++) {
             points[i] = new Point(
@@ -60,6 +62,16 @@ public class Tetromino {
                 rotatedPoints[i].addCol(Board.MAX_COL - maxCol);
         }
 
+        if (checkTetrominoOverlappingLine(rotatedPoints)) {
+            for (Point point : rotatedPoints) {
+                point.addRow(-2);
+                if (point.getRow() < 0)
+                    return points;
+            }
+            if (checkTetrominoOverlappingLine(rotatedPoints))
+                return points;
+        }
+
         points = rotatedPoints;
         return points;
     }
@@ -72,7 +84,7 @@ public class Tetromino {
         centerPoint.addCol(1);
         for (int i = 0; i < 4; i++) {
             points[i].addCol(1);
-            if (points[i].getCol() > Board.MAX_COL) {
+            if (points[i].getCol() > Board.MAX_COL || checkPointOverlappingLine(points[i])) {
                 centerPoint.addCol(-1);
                 for (; i >= 0; i--)
                     points[i].addCol(-1);
@@ -87,7 +99,7 @@ public class Tetromino {
         centerPoint.addCol(-1);
         for (int i = 0; i < 4; i++) {
             points[i].addCol(-1);
-            if (points[i].getCol() < 0) {
+            if (points[i].getCol() < 0 || checkPointOverlappingLine(points[i])) {
                 centerPoint.addCol(1);
                 for (; i >= 0; i--)
                     points[i].addCol(1);
@@ -99,10 +111,55 @@ public class Tetromino {
     }
 
     public Point[] moveDown() {
+        centerPoint.addRow(1);
+        for (int i = 0; i < 4; i++) {
+            points[i].addRow(1);
+            if (points[i].getRow() > Board.MAX_ROW || checkPointOverlappingLine(points[i])) {
+                centerPoint.addRow(-1);
+                for (; i >= 0; i--)
+                    points[i].addRow(-1);
+                return null;
+            }
+        }
         return points;
     }
 
     public Point[] drop() {
+        boolean[][] brd = board.getBoard();
+        int minDistance = 20;
+        int tempDistance;
+        int row, col;
+
+        for (Point point : points) {
+            tempDistance = 1;
+            row = point.getRow();
+            col = point.getCol();
+            while (row + tempDistance <= Board.MAX_ROW && !brd[row + tempDistance][col])
+                tempDistance++;
+            minDistance = Math.min(minDistance, tempDistance - 1);
+        }
+
+        if (minDistance == 0)
+            return points;
+
+        centerPoint.addRow(minDistance);
+        for (Point point : points)
+            point.addRow(minDistance);
+
         return points;
+    }
+
+    private boolean checkPointOverlappingLine(Point point) {
+        return board.getBoard()[point.getRow()][point.getCol()];
+    }
+
+    private boolean checkTetrominoOverlappingLine(Point[] points) {
+        boolean[][] brd = board.getBoard();
+
+        for (Point point : points) {
+            if (brd[point.getRow()][point.getCol()])
+                return true;
+        }
+        return false;
     }
 }

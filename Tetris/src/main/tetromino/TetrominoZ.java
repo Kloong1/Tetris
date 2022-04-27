@@ -15,6 +15,7 @@ public class TetrominoZ extends Tetromino{
     public TetrominoZ(Board board) {
         super(board);
         blocks = BLOCKS_Z;
+        initPoints();
     }
 
     private static void initBlocksZ() {

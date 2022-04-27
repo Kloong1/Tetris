@@ -44,4 +44,13 @@ public class Point {
         Point p = (Point)o;
         return this.row == p.row && this.col == p.col;
     }
+
+    //for test
+    @Override
+    public String toString() {
+        return "Point{" +
+                "row=" + row +
+                ", col=" + col +
+                '}';
+    }
 }
