@@ -10,10 +10,10 @@ public class Tetromino {
     protected Point[] points;
     protected Point[][] blocks;
 
-    protected Board board;
+    protected final Board board;
 
     protected Tetromino(Board board) {
-        this.rotateIdx = 0;
+        this.board = board;
         this.centerPoint = new Point(1, 5);
 
         points = new Point[4];
