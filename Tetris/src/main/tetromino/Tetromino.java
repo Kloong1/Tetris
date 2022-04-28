@@ -39,7 +39,7 @@ public class Tetromino {
         return getRotatedPoints();
     }
 
-    protected Point[] getRotatedPoints() {
+    private Point[] getRotatedPoints() {
         Point[] rotatedPoints = new Point[4];
 
         int minCol = 0;
@@ -53,14 +53,7 @@ public class Tetromino {
             maxCol = Math.max(maxCol, rotatedPoints[i].getCol());
         }
 
-        if (minCol < 0) {
-            for (int i = 0; i < 4; i++)
-                rotatedPoints[i].addCol(-minCol);
-        }
-        else if (maxCol > Board.MAX_COL) {
-            for (int i = 0; i < 4; i++)
-                rotatedPoints[i].addCol(Board.MAX_COL - maxCol);
-        }
+        moveTetrominoInsideBoard(rotatedPoints, minCol, maxCol);
 
         if (checkTetrominoOverlappingLine(rotatedPoints)) {
             for (Point point : rotatedPoints) {
@@ -74,6 +67,17 @@ public class Tetromino {
 
         points = rotatedPoints;
         return points;
+    }
+
+    private void moveTetrominoInsideBoard(Point[] rotatedPoints, int minCol, int maxCol) {
+        if (minCol < 0) {
+            for (int i = 0; i < 4; i++)
+                rotatedPoints[i].addCol(-minCol);
+        }
+        else if (maxCol > Board.MAX_COL) {
+            for (int i = 0; i < 4; i++)
+                rotatedPoints[i].addCol(Board.MAX_COL - maxCol);
+        }
     }
 
     public Point[] getPoints() {
