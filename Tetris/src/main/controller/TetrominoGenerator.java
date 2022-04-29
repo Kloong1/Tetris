@@ -17,12 +17,18 @@ public class TetrominoGenerator {
         initTetrominos();
     }
 
-    public Tetromino getNextTetromino() {
+    public Tetromino getTetromino() {
         if (idx >= tetrominos.size()) {
             idx = 0;
             initTetrominos();
         }
         return tetrominos.get(idx++);
+    }
+
+    public Tetromino peekNextTetromino() {
+        if (idx >= tetrominos.size())
+            return tetrominos.get(0);
+        return tetrominos.get(idx);
     }
 
     private void initTetrominos() {
