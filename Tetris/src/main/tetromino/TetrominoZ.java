@@ -1,6 +1,6 @@
 package tetromino;
 
-import board.Board;
+import board.TetrisBoard;
 import point.Point;
 
 public class TetrominoZ extends Tetromino{
@@ -12,8 +12,8 @@ public class TetrominoZ extends Tetromino{
         initBlocksZ();
     }
 
-    public TetrominoZ(Board board) {
-        super(board);
+    public TetrominoZ(TetrisBoard tetrisBoard) {
+        super(tetrisBoard);
         blocks = BLOCKS_Z;
         initPoints();
     }

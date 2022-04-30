@@ -1,6 +1,6 @@
 package tetromino;
 
-import board.Board;
+import board.TetrisBoard;
 import point.Point;
 
 public class Tetromino {
@@ -10,10 +10,10 @@ public class Tetromino {
     protected Point[] points;
     protected Point[][] blocks;
 
-    protected final Board board;
+    protected final TetrisBoard tetrisBoard;
 
-    protected Tetromino(Board board) {
-        this.board = board;
+    protected Tetromino(TetrisBoard tetrisBoard) {
+        this.tetrisBoard = tetrisBoard;
         this.centerPoint = new Point(1, 5);
     }
 
@@ -74,9 +74,9 @@ public class Tetromino {
             for (int i = 0; i < 4; i++)
                 rotatedPoints[i].addCol(-minCol);
         }
-        else if (maxCol > Board.MAX_COL) {
+        else if (maxCol > TetrisBoard.MAX_COL) {
             for (int i = 0; i < 4; i++)
-                rotatedPoints[i].addCol(Board.MAX_COL - maxCol);
+                rotatedPoints[i].addCol(TetrisBoard.MAX_COL - maxCol);
         }
     }
 
@@ -88,7 +88,7 @@ public class Tetromino {
         centerPoint.addCol(1);
         for (int i = 0; i < 4; i++) {
             points[i].addCol(1);
-            if (points[i].getCol() > Board.MAX_COL || checkPointOverlappingLine(points[i])) {
+            if (points[i].getCol() > TetrisBoard.MAX_COL || checkPointOverlappingLine(points[i])) {
                 centerPoint.addCol(-1);
                 for (; i >= 0; i--)
                     points[i].addCol(-1);
@@ -118,7 +118,7 @@ public class Tetromino {
         centerPoint.addRow(1);
         for (int i = 0; i < 4; i++) {
             points[i].addRow(1);
-            if (points[i].getRow() > Board.MAX_ROW || checkPointOverlappingLine(points[i])) {
+            if (points[i].getRow() > TetrisBoard.MAX_ROW || checkPointOverlappingLine(points[i])) {
                 centerPoint.addRow(-1);
                 for (; i >= 0; i--)
                     points[i].addRow(-1);
@@ -129,7 +129,7 @@ public class Tetromino {
     }
 
     public Point[] drop() {
-        boolean[][] brd = board.getBoard();
+        boolean[][] brd = tetrisBoard.getBoard();
         int minDistance = 20;
         int tempDistance;
         int row, col;
@@ -138,7 +138,7 @@ public class Tetromino {
             tempDistance = 1;
             row = point.getRow();
             col = point.getCol();
-            while (row + tempDistance <= Board.MAX_ROW && !brd[row + tempDistance][col])
+            while (row + tempDistance <= TetrisBoard.MAX_ROW && !brd[row + tempDistance][col])
                 tempDistance++;
             minDistance = Math.min(minDistance, tempDistance - 1);
         }
@@ -154,11 +154,11 @@ public class Tetromino {
     }
 
     private boolean checkPointOverlappingLine(Point point) {
-        return board.getBoard()[point.getRow()][point.getCol()];
+        return tetrisBoard.getBoard()[point.getRow()][point.getCol()];
     }
 
     private boolean checkTetrominoOverlappingLine(Point[] points) {
-        boolean[][] brd = board.getBoard();
+        boolean[][] brd = tetrisBoard.getBoard();
 
         for (Point point : points) {
             if (brd[point.getRow()][point.getCol()])

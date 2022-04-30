@@ -1,6 +1,6 @@
 package controller;
 
-import board.Board;
+import board.TetrisBoard;
 import tetromino.*;
 
 import java.util.ArrayList;
@@ -10,10 +10,10 @@ public class TetrominoGenerator {
 
     private final ArrayList<Tetromino> tetrominos = new ArrayList<>(7);
     private int idx = 0;
-    private final Board board;
+    private final TetrisBoard tetrisBoard;
 
-    public TetrominoGenerator(Board board) {
-        this.board = board;
+    public TetrominoGenerator(TetrisBoard tetrisBoard) {
+        this.tetrisBoard = tetrisBoard;
         initTetrominos();
     }
 
@@ -32,13 +32,13 @@ public class TetrominoGenerator {
     }
 
     private void initTetrominos() {
-        tetrominos.add(new TetrominoI(board));
-        tetrominos.add(new TetrominoJ(board));
-        tetrominos.add(new TetrominoL(board));
-        tetrominos.add(new TetrominoO(board));
-        tetrominos.add(new TetrominoS(board));
-        tetrominos.add(new TetrominoT(board));
-        tetrominos.add(new TetrominoZ(board));
+        tetrominos.add(new TetrominoI(tetrisBoard));
+        tetrominos.add(new TetrominoJ(tetrisBoard));
+        tetrominos.add(new TetrominoL(tetrisBoard));
+        tetrominos.add(new TetrominoO(tetrisBoard));
+        tetrominos.add(new TetrominoS(tetrisBoard));
+        tetrominos.add(new TetrominoT(tetrisBoard));
+        tetrominos.add(new TetrominoZ(tetrisBoard));
         Collections.shuffle(tetrominos);
     }
 }

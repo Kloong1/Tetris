@@ -3,7 +3,7 @@ package board;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class Board implements Serializable {
+public class TetrisBoard implements Serializable {
 
     public static final transient int MAX_COL = 9;
     public static final transient int MAX_ROW = 19;
