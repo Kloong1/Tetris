@@ -1,7 +1,9 @@
+import controller.TetrisController;
 import frame.TetrisFrame;
 
 public class TetrisApp {
     public static void main(String[] args) {
-        new TetrisFrame();
+        TetrisController tetrisController = new TetrisController();
+        TetrisFrame tetrisFrame = new TetrisFrame(tetrisController);
     }
 }
