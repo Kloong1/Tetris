@@ -42,9 +42,8 @@ public class TetrisFrame extends JFrame {
     }
 
     private void initPlayerPanel() {
-        JPanel playerPanel = new JPanel();
-        playerPanel.setBackground(Color.LIGHT_GRAY);
-//        initPlayerTetrisBoard(playerPanel);
+        JPanel playerPanel = new TetrisPlayerPanel();
+        playerPanel.setBackground(Color.ORANGE);
         mainPanel.add(playerPanel);
         mainPanel.add(Box.createRigidArea(new Dimension(PLAYER_ENEMY_GAP, mainPanel.getHeight())));
     }
