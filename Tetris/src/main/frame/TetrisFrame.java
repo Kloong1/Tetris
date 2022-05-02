@@ -9,8 +9,8 @@ import java.awt.*;
 public class TetrisFrame extends JFrame {
     private final TetrisController tetrisController;
 
-    private final static int WIDTH = 1280;
-    private final static int HEIGHT = 720;
+    private final static int WIDTH = 1200;
+    private final static int HEIGHT = 700;
 
     private final static int CONTAINER_PADDING = 15;
     private final static int PLAYER_ENEMY_GAP = 15;
@@ -21,8 +21,8 @@ public class TetrisFrame extends JFrame {
         this.tetrisController = tetrisController;
 
         initMainPanel();
-
         initPlayerPanel();
+        mainPanel.add(Box.createRigidArea(new Dimension(PLAYER_ENEMY_GAP, mainPanel.getHeight())));
         initEnemyPanel();
 
         initFrame();
@@ -43,18 +43,7 @@ public class TetrisFrame extends JFrame {
 
     private void initPlayerPanel() {
         JPanel playerPanel = new TetrisPlayerPanel();
-        playerPanel.setBackground(Color.ORANGE);
         mainPanel.add(playerPanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(PLAYER_ENEMY_GAP, mainPanel.getHeight())));
-    }
-
-    private void initPlayerTetrisBoard(JPanel playerPanel) {
-        JPanel playerTetrisBoard = new JPanel();
-        playerTetrisBoard.setLayout(new GridLayout(20, 10));
-        playerTetrisBoard.setBackground(Color.BLACK);
-
-        JPanel[][] tetrisBoardPanels = new JPanel[10][20];
-        playerPanel.add(playerTetrisBoard);
     }
 
     private void initEnemyPanel() {

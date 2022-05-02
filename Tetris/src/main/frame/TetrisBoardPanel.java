@@ -8,18 +8,18 @@ import java.awt.*;
 
 public class TetrisBoardPanel extends JPanel {
 
-    private final static int BLOCK_SIZE = 30;
     private final static int BLOCK_BORDER_THICKNESS = 1;
     private final static Color DEFAULT_BLOCK_COLOR = Color.LIGHT_GRAY;
 
-    private final static int BOARD_BORDER_THICKNESS = 3;
+    private final static int BOARD_BORDER_THICKNESS = 5;
 
     private JPanel[][] blockPanels;
 
     public TetrisBoardPanel() {
         super();
         setBorder(new LineBorder(Color.BLACK, BOARD_BORDER_THICKNESS));
-        setLayout(new GridLayout(TetrisBoard.MAX_ROW + 1, TetrisBoard.MAX_COL + 1));
+        setLayout(new GridLayout(TetrisBoard.MAX_ROW + 1, TetrisBoard.MAX_COL + 1, 0, 0));
+        setBackground(Color.LIGHT_GRAY);
         initBlockPanels();
     }
 
@@ -29,7 +29,6 @@ public class TetrisBoardPanel extends JPanel {
         for (int row = 0; row <= TetrisBoard.MAX_ROW; row++) {
             for (int col = 0; col <= TetrisBoard.MAX_COL; col++) {
                 JPanel blockPanel = new JPanel();
-                blockPanel.setSize(BLOCK_SIZE, BLOCK_SIZE);
                 blockPanel.setBackground(DEFAULT_BLOCK_COLOR);
                 blockPanel.setBorder(new LineBorder(Color.GRAY, BLOCK_BORDER_THICKNESS));
                 blockPanels[row][col] = blockPanel;
