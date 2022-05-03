@@ -3,12 +3,15 @@ package tetromino;
 import board.TetrisBoard;
 import point.Point;
 
+import java.awt.*;
+
 public class Tetromino {
 
     protected int rotateIdx;
     protected Point centerPoint;
     protected Point[] points;
     protected Point[][] blocks;
+    protected Color color;
 
     protected final TetrisBoard tetrisBoard;
 
@@ -24,6 +27,14 @@ public class Tetromino {
                     centerPoint.getRow() + blocks[rotateIdx][i].getRow(),
                     centerPoint.getCol() + blocks[rotateIdx][i].getCol());
         }
+    }
+
+    public Point[] getPoints() {
+        return points;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public Point[] rotateClockwise() {
@@ -80,9 +91,6 @@ public class Tetromino {
         }
     }
 
-    public Point[] getPoints() {
-        return points;
-    }
 
     public Point[] moveRight() {
         centerPoint.addCol(1);

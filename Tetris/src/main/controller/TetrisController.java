@@ -1,8 +1,11 @@
 package controller;
 
 import board.TetrisBoard;
+import point.Point;
 import score.ScoreManager;
 import tetromino.Tetromino;
+
+import java.awt.*;
 
 public class TetrisController {
     private final TetrisBoard tetrisBoard;
@@ -21,6 +24,18 @@ public class TetrisController {
         return tetrisBoard;
     }
 
+    public Tetromino getTetromino() {
+        return tetromino;
+    }
+
+    public Point[] getTetrominoPoints() {
+        return tetromino.getPoints();
+    }
+
+    public Color getTetrominoColor() {
+        return tetromino.getColor();
+    }
+
     public int getScore() {
         return scoreManager.getScore();
     }
@@ -29,20 +44,38 @@ public class TetrisController {
         return scoreManager.getCombo();
     }
 
-    public void moveTetrominoLeft() {
-        tetromino.moveLeft();
+    public Point[] moveTetrominoLeft() {
+        return tetromino.moveLeft();
     }
 
-    public void moveTetrominoRight() {
-        tetromino.moveRight();
+    public Point[] moveTetrominoRight() {
+        return tetromino.moveRight();
     }
 
-    public void moveTetrominoDown() {
-        tetromino.moveDown();
+    public Point[] moveTetrominoDown() {
+        if (tetromino.moveDown() == null) {
+            tetrisBoard.clearLine();
+            return null;
+        }
+        else
+            return tetromino.getPoints();
     }
 
-    public void dropTetromino() {
+    public Point[] dropTetromino() {
         tetromino.drop();
+        tetrisBoard.clearLine();
+        return null;
+    }
+
+    public Point[] rotateClockwiseTetromino() {
+        return tetromino.rotateClockwise();
+    }
+
+    public Point[] rotateAnticlockwiseTetromino() {
+        return tetromino.rotateAnticlockwise();
+    }
+
+    public void generateNewTetromino() {
         tetromino = tetrominoGenerator.getTetromino();
     }
 }

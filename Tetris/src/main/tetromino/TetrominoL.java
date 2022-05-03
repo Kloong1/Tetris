@@ -3,6 +3,8 @@ package tetromino;
 import board.TetrisBoard;
 import point.Point;
 
+import java.awt.*;
+
 public class TetrominoL extends Tetromino{
 
     private final static Point[][] BLOCKS_L;
@@ -15,6 +17,7 @@ public class TetrominoL extends Tetromino{
     public TetrominoL(TetrisBoard tetrisBoard) {
         super(tetrisBoard);
         blocks = BLOCKS_L;
+        color = Color.ORANGE;
         initPoints();
     }
 
