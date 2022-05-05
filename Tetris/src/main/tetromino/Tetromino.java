@@ -145,6 +145,7 @@ public class Tetromino {
                 centerPoint.addRow(-1);
                 for (; i >= 0; i--)
                     points[i].addRow(-1);
+                tetrisBoard.drawDroppedTetromino(points);
                 return null;
             }
         }
@@ -166,12 +167,13 @@ public class Tetromino {
             minDistance = Math.min(minDistance, tempDistance - 1);
         }
 
-        if (minDistance == 0)
-            return points;
+        if (minDistance != 0) {
+            centerPoint.addRow(minDistance);
+            for (Point point : points)
+                point.addRow(minDistance);
+        }
 
-        centerPoint.addRow(minDistance);
-        for (Point point : points)
-            point.addRow(minDistance);
+        tetrisBoard.drawDroppedTetromino(points);
 
         return points;
     }

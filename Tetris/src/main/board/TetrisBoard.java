@@ -1,5 +1,7 @@
 package board;
 
+import point.Point;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -28,6 +30,11 @@ public class TetrisBoard implements Serializable {
         }
 
         return clearedLines;
+    }
+
+    public void drawDroppedTetromino(Point[] points) {
+        for (Point point : points)
+            board[point.getRow()][point.getCol()] = true;
     }
 
     private void moveDownLine(int lineIdx, int clearedLines) {
