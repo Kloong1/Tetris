@@ -32,6 +32,7 @@ public class TetrominoGenerator {
     }
 
     private void initTetrominos() {
+        tetrominos.clear();
         tetrominos.add(new TetrominoI(tetrisBoard));
         tetrominos.add(new TetrominoJ(tetrisBoard));
         tetrominos.add(new TetrominoL(tetrisBoard));

@@ -38,19 +38,22 @@ public class Tetromino {
     }
 
     public Point[] rotateClockwise() {
+        int preRotateIdx = rotateIdx;
         rotateIdx = (rotateIdx + 1) % blocks.length;
-        return getRotatedPoints();
+        return getRotatedPoints(preRotateIdx);
     }
 
     public Point[] rotateAnticlockwise() {
+        int preRotateIdx = rotateIdx;
         if (rotateIdx == 0)
             rotateIdx = blocks.length - 1;
         else
             rotateIdx--;
-        return getRotatedPoints();
+        return getRotatedPoints(preRotateIdx);
     }
 
-    private Point[] getRotatedPoints() {
+    //회전시 centerPoint도 제대로 움직여줘야함.
+    private Point[] getRotatedPoints(int preRotateIdx) {
         Point[] rotatedPoints = new Point[4];
 
         int minCol = 0;
@@ -74,11 +77,15 @@ public class Tetromino {
         if (checkTetrominoOverlappingLine(rotatedPoints)) {
             for (Point point : rotatedPoints) {
                 point.addRow(-2);
-                if (point.getRow() < 0)
+                if (point.getRow() < 0) {
+                    rotateIdx = preRotateIdx;
                     return points;
+                }
             }
-            if (checkTetrominoOverlappingLine(rotatedPoints))
+            if (checkTetrominoOverlappingLine(rotatedPoints)) {
+                rotateIdx = preRotateIdx;
                 return points;
+            }
         }
 
         points = rotatedPoints;
