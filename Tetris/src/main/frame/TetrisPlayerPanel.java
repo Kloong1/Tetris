@@ -21,10 +21,13 @@ public class TetrisPlayerPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(new EmptyBorder(PANEL_PADDING, PANEL_PADDING, PANEL_PADDING, PANEL_PADDING));
         setBackground(Color.ORANGE);
+
         addTetrisBoardPanel(tetrisController.getBoard());
         addPlayerStatusPanel();
+
         initKeyBindings();
 
+        //draw first tetromino
         tetrisBoardPanel.colorTetrominoOnBlockPanels(tetrisController.getTetrominoPoints(), tetrisController.getTetrominoColor());
     }
 
