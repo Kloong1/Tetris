@@ -2,7 +2,7 @@ package frame;
 
 import board.TetrisBoard;
 import controller.TetrisController;
-import ketaction.PlayerKeyAction;
+import keyaction.PlayerKeyAction;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class TetrisPlayerPanel extends JPanel {
     private static final int PANEL_PADDING = 15;
+    private static final int BOARD_STATUS_GAP = 15;
 
     private final TetrisController tetrisController;
     private TetrisBoardPanel tetrisBoardPanel;
@@ -23,6 +24,7 @@ public class TetrisPlayerPanel extends JPanel {
         setBackground(Color.ORANGE);
 
         addTetrisBoardPanel(tetrisController.getBoard());
+        add(Box.createRigidArea(new Dimension(BOARD_STATUS_GAP, 0)));
         addPlayerStatusPanel();
 
         initKeyBindings();
@@ -37,8 +39,7 @@ public class TetrisPlayerPanel extends JPanel {
     }
 
     private void addPlayerStatusPanel() {
-        playerStatusPanel = new PlayerStatusPanel();
-        playerStatusPanel.setBackground(Color.WHITE);
+        playerStatusPanel = new PlayerStatusPanel(tetrisController);
         add(playerStatusPanel);
     }
 

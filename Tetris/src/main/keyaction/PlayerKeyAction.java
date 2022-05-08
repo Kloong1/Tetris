@@ -1,4 +1,4 @@
-package ketaction;
+package keyaction;
 
 import controller.TetrisController;
 import frame.PlayerStatusPanel;
