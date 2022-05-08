@@ -38,7 +38,7 @@ public class TetrisBoard implements Serializable {
     }
 
     private void moveDownLine(int lineIdx, int clearedLines) {
-        System.arraycopy(board[lineIdx], 0, board[lineIdx + clearedLines], 0, MAX_COL);
+        System.arraycopy(board[lineIdx], 0, board[lineIdx + clearedLines], 0, MAX_COL + 1);
     }
 
     private boolean isLineFilled(boolean[] line) {

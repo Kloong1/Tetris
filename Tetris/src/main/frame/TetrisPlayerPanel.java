@@ -24,6 +24,8 @@ public class TetrisPlayerPanel extends JPanel {
         addTetrisBoardPanel(tetrisController.getBoard());
         addPlayerStatusPanel();
         initKeyBindings();
+
+        tetrisBoardPanel.colorTetrominoOnBlockPanels(tetrisController.getTetrominoPoints(), tetrisController.getTetrominoColor());
     }
 
     private void addTetrisBoardPanel(TetrisBoard tetrisBoard) {

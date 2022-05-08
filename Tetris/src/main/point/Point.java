@@ -11,6 +11,11 @@ public class Point {
         this.col = col;
     }
 
+    public Point(Point other) {
+        this.row = other.row;
+        this.col = other.col;
+    }
+
     public int getRow() {
         return row;
     }

@@ -16,6 +16,7 @@ public class TetrominoO extends Tetromino{
 
     public TetrominoO(TetrisBoard tetrisBoard) {
         super(tetrisBoard);
+        this.centerPoint.setRow(0);
         blocks = BLOCKS_O;
         color = Color.YELLOW;
         initPoints();

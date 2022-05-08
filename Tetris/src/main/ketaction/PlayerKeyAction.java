@@ -56,7 +56,6 @@ public class PlayerKeyAction extends AbstractAction {
         tetrisBoardPanel.eraseTetrominoFromBlockPanels(tetrisController.getTetrominoPoints());
         if (tetrisController.moveTetrominoDown() == null) {
             tetrisBoardPanel.colorLinesOnBlockPanels();
-            tetrisController.generateNewTetromino();
         }
         tetrisBoardPanel.colorTetrominoOnBlockPanels(tetrisController.getTetrominoPoints(), tetrisController.getTetrominoColor());
     }
@@ -65,7 +64,6 @@ public class PlayerKeyAction extends AbstractAction {
         tetrisBoardPanel.eraseTetrominoFromBlockPanels(tetrisController.getTetrominoPoints());
         tetrisController.dropTetromino();
         tetrisBoardPanel.colorLinesOnBlockPanels();
-        tetrisController.generateNewTetromino();
         tetrisBoardPanel.colorTetrominoOnBlockPanels(tetrisController.getTetrominoPoints(), tetrisController.getTetrominoColor());
     }
 

@@ -1,11 +1,13 @@
 package frame;
 
 import board.TetrisBoard;
+import point.Point;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.util.Arrays;
+
+import java.awt.Color;
+import java.awt.GridLayout;
 
 public class TetrisBoardPanel extends JPanel {
 
@@ -40,13 +42,13 @@ public class TetrisBoardPanel extends JPanel {
         }
     }
 
-    public void colorTetrominoOnBlockPanels(point.Point[] points, Color color) {
-        for (point.Point point : points) {
+    public void colorTetrominoOnBlockPanels(Point[] points, Color color) {
+        for (Point point : points) {
             blockPanels[point.getRow()][point.getCol()].setBackground(color);
         }
     }
 
-    public void eraseTetrominoFromBlockPanels(point.Point[] points) {
+    public void eraseTetrominoFromBlockPanels(Point[] points) {
         colorTetrominoOnBlockPanels(points, DEFAULT_BLOCK_COLOR);
     }
 
@@ -54,8 +56,12 @@ public class TetrisBoardPanel extends JPanel {
         boolean[][] board = tetrisBoard.getBoard();
         for (int row = 0; row <= TetrisBoard.MAX_ROW; row++) {
             for (int col = 0; col <= TetrisBoard.MAX_COL; col++)
+            {
                 if (board[row][col])
                     blockPanels[row][col].setBackground(DEFAULT_LINE_COLOR);
+                else
+                    blockPanels[row][col].setBackground(DEFAULT_BLOCK_COLOR);
+            }
         }
     }
 }

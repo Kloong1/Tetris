@@ -17,7 +17,7 @@ public class Tetromino {
 
     protected Tetromino(TetrisBoard tetrisBoard) {
         this.tetrisBoard = tetrisBoard;
-        this.centerPoint = new Point(1, 5);
+        this.centerPoint = new Point(1, 4);
     }
 
     protected void initPoints() {
@@ -38,77 +38,75 @@ public class Tetromino {
     }
 
     public Point[] rotateClockwise() {
-        int preRotateIdx = rotateIdx;
-        rotateIdx = (rotateIdx + 1) % blocks.length;
-        return getRotatedPoints(preRotateIdx);
+        int nextRotateIdx = (rotateIdx + 1) % blocks.length;
+        return getRotatedPoints(nextRotateIdx);
     }
 
     public Point[] rotateAnticlockwise() {
-        int preRotateIdx = rotateIdx;
-        if (rotateIdx == 0)
-            rotateIdx = blocks.length - 1;
-        else
-            rotateIdx--;
-        return getRotatedPoints(preRotateIdx);
+        int nextRotateIdx = rotateIdx == 0 ? blocks.length - 1 : rotateIdx - 1;
+        return getRotatedPoints(nextRotateIdx);
     }
 
-    //회전시 centerPoint도 제대로 움직여줘야함.
-    private Point[] getRotatedPoints(int preRotateIdx) {
+    private Point[] getRotatedPoints(int nextRotateIdx) {
         Point[] rotatedPoints = new Point[4];
+        Point nextCenterPoint = new Point(centerPoint);
 
-        int minCol = 0;
-        int maxCol = 0;
-        int minRow = 0;
-        int maxRow = 0;
+        int minCol = 0, maxCol = 0;
+        int minRow = 0, maxRow = 0;
 
         for (int i = 0; i < 4; i++) {
             rotatedPoints[i] = new Point(
-                    centerPoint.getRow() + blocks[rotateIdx][i].getRow(),
-                    centerPoint.getCol() + blocks[rotateIdx][i].getCol());
+                    nextCenterPoint.getRow() + blocks[nextRotateIdx][i].getRow(),
+                    nextCenterPoint.getCol() + blocks[nextRotateIdx][i].getCol());
             minCol = Math.min(minCol, rotatedPoints[i].getCol());
             maxCol = Math.max(maxCol, rotatedPoints[i].getCol());
             minRow = Math.min(minRow, rotatedPoints[i].getRow());
             maxRow = Math.max(maxRow, rotatedPoints[i].getRow());
         }
 
-        moveTetrominoInsideColumn(rotatedPoints, minCol, maxCol);
-        moveTetrominoInsideRow(rotatedPoints, minRow, maxRow);
+        moveTetrominoInsideColumn(rotatedPoints, nextCenterPoint, minCol, maxCol);
+        moveTetrominoInsideRow(rotatedPoints, nextCenterPoint, minRow, maxRow);
 
         if (checkTetrominoOverlappingLine(rotatedPoints)) {
-            for (Point point : rotatedPoints) {
-                point.addRow(-2);
-                if (point.getRow() < 0) {
-                    rotateIdx = preRotateIdx;
+            for (Point rotatedPoint : rotatedPoints) {
+                rotatedPoint.addRow(-2);
+                if (rotatedPoint.getRow() < 0) {
                     return points;
                 }
             }
             if (checkTetrominoOverlappingLine(rotatedPoints)) {
-                rotateIdx = preRotateIdx;
                 return points;
             }
         }
 
         points = rotatedPoints;
+        centerPoint = nextCenterPoint;
+        rotateIdx = nextRotateIdx;
+
         return points;
     }
 
-    private void moveTetrominoInsideColumn(Point[] rotatedPoints, int minCol, int maxCol) {
+    private void moveTetrominoInsideColumn(Point[] rotatedPoints, Point nextCenterPoint, int minCol, int maxCol) {
         if (minCol < 0) {
+            nextCenterPoint.addCol(-minCol);
             for (int i = 0; i < 4; i++)
                 rotatedPoints[i].addCol(-minCol);
         }
         else if (maxCol > TetrisBoard.MAX_COL) {
+            nextCenterPoint.addCol(TetrisBoard.MAX_COL - maxCol);
             for (int i = 0; i < 4; i++)
                 rotatedPoints[i].addCol(TetrisBoard.MAX_COL - maxCol);
         }
     }
 
-    private void moveTetrominoInsideRow(Point[] rotatedPoints, int minRow, int maxRow) {
+    private void moveTetrominoInsideRow(Point[] rotatedPoints, Point nextCenterPoint, int minRow, int maxRow) {
         if (minRow < 0) {
+            nextCenterPoint.addRow(-minRow);
             for (int i = 0; i < 4; i++)
                 rotatedPoints[i].addRow(-minRow);
         }
         else if (maxRow > TetrisBoard.MAX_ROW) {
+            nextCenterPoint.addRow(TetrisBoard.MAX_ROW - maxRow);
             for (int i = 0; i < 4; i++)
                 rotatedPoints[i].addRow(TetrisBoard.MAX_ROW - maxRow);
         }
@@ -152,7 +150,6 @@ public class Tetromino {
                 centerPoint.addRow(-1);
                 for (; i >= 0; i--)
                     points[i].addRow(-1);
-                tetrisBoard.drawDroppedTetromino(points);
                 return null;
             }
         }
@@ -174,13 +171,11 @@ public class Tetromino {
             minDistance = Math.min(minDistance, tempDistance - 1);
         }
 
-        if (minDistance != 0) {
+        if (minDistance > 0) {
             centerPoint.addRow(minDistance);
             for (Point point : points)
                 point.addRow(minDistance);
         }
-
-        tetrisBoard.drawDroppedTetromino(points);
 
         return points;
     }

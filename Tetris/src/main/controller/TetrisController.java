@@ -54,17 +54,19 @@ public class TetrisController {
 
     public Point[] moveTetrominoDown() {
         if (tetromino.moveDown() == null) {
+            tetrisBoard.drawDroppedTetromino(tetromino.getPoints());
             tetrisBoard.clearLine();
+            tetromino = tetrominoGenerator.getTetromino();
             return null;
         }
         else
             return tetromino.getPoints();
     }
 
-    public Point[] dropTetromino() {
-        tetromino.drop();
+    public void dropTetromino() {
+        tetrisBoard.drawDroppedTetromino(tetromino.drop());
         tetrisBoard.clearLine();
-        return null;
+        tetromino = tetrominoGenerator.getTetromino();
     }
 
     public Point[] rotateClockwiseTetromino() {
@@ -75,7 +77,4 @@ public class TetrisController {
         return tetromino.rotateAnticlockwise();
     }
 
-    public void generateNewTetromino() {
-        tetromino = tetrominoGenerator.getTetromino();
-    }
 }
