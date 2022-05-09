@@ -61,4 +61,8 @@ public class PlayerNextTetrominoPanel extends JPanel {
             }
         }
     }
+
+    public void setNextTetromino() {
+
+    }
 }

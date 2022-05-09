@@ -28,11 +28,15 @@ public class PlayerScorePanel extends JPanel {
     }
 
     private void initScoreLabel() {
-        scoreLabel = new JLabel("1234567");
+        scoreLabel = new JLabel("0");
         scoreLabel.setFont(new Font(FONT_NAME, Font.PLAIN, SCORE_FONT_SIZE));
         scoreLabel.setAlignmentX(CENTER_ALIGNMENT);
         setMinimumSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));
         setPreferredSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));
         setMaximumSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));
+    }
+
+    public void setScore(int score) {
+        scoreLabel.setText(Integer.toString(score));
     }
 }

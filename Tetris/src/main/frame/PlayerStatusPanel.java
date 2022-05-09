@@ -3,8 +3,6 @@ package frame;
 import controller.TetrisController;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class PlayerStatusPanel extends JPanel {
@@ -45,5 +43,24 @@ public class PlayerStatusPanel extends JPanel {
 
     private void initNextTetrominoPanel() {
         nextTetrominoPanel = new PlayerNextTetrominoPanel();
+    }
+
+    public void updatePlayerStatus() {
+        updateScore();
+        updateCombo();
+        updateNextTetromino();
+    }
+
+    private void updateScore() {
+        scorePanel.setScore(tetrisController.getScore());
+    }
+
+    private void updateCombo() {
+        comboPanel.setCombo(tetrisController.getCombo());
+    }
+
+    private void updateNextTetromino() {
+        //need parameter from tetrisController
+        nextTetrominoPanel.setNextTetromino();
     }
 }

@@ -27,11 +27,15 @@ public class PlayerComboPanel extends JPanel {
     }
 
     private void initScoreLabel() {
-        comboLabel = new JLabel("3 Combo");
+        comboLabel = new JLabel("0 Combo");
         comboLabel.setFont(new Font(FONT_NAME, Font.PLAIN, COMBO_FONT_SIZE));
         comboLabel.setAlignmentX(CENTER_ALIGNMENT);
         setMinimumSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));
         setPreferredSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));
         setMaximumSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));
+    }
+
+    public void setCombo(int combo) {
+        comboLabel.setText(Integer.toString(combo) + " Combo");
     }
 }
