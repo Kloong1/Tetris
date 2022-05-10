@@ -15,20 +15,21 @@ public class PlayerScorePanel extends JPanel {
     private static final int SCORE_FONT_SIZE = 40;
     private static final int SCORE_PADDING = 5;
 
-    private JLabel scoreLabel;
+    private final JLabel scoreLabel;
 
     public PlayerScorePanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(new TitledBorder(new LineBorder(Color.BLACK), TITLE_STRING,
                 TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION,
                 new Font(FONT_NAME, Font.PLAIN, TITlE_FONT_SIZE)));
+
+        scoreLabel = new JLabel("0");
         initScoreLabel();
         add(scoreLabel);
         add(Box.createRigidArea(new Dimension(0, SCORE_PADDING)));
     }
 
     private void initScoreLabel() {
-        scoreLabel = new JLabel("0");
         scoreLabel.setFont(new Font(FONT_NAME, Font.PLAIN, SCORE_FONT_SIZE));
         scoreLabel.setAlignmentX(CENTER_ALIGNMENT);
         setMinimumSize(new Dimension(PlayerStatusPanel.WIDTH, HEIGHT));

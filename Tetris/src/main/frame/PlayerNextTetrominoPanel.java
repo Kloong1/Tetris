@@ -22,7 +22,7 @@ public class PlayerNextTetrominoPanel extends JPanel {
     private final static int BOARD_BORDER_THICKNESS = 3;
     private final static Color DEFAULT_BLOCK_COLOR = Color.WHITE;
 
-    private JPanel boardPanel;
+    private final JPanel boardPanel;
     private JPanel[][] blockPanels;
 
     public PlayerNextTetrominoPanel() {
@@ -32,12 +32,12 @@ public class PlayerNextTetrominoPanel extends JPanel {
                 TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION,
                 new Font(FONT_NAME, Font.PLAIN, TITlE_FONT_SIZE)));
 
+        boardPanel = new JPanel();
         initBoardPanel();
         add(boardPanel);
     }
 
     private void initBoardPanel() {
-        boardPanel = new JPanel();
         boardPanel.setBorder(new LineBorder(Color.BLACK, BOARD_BORDER_THICKNESS));
         boardPanel.setLayout(new GridLayout(4, 4, 0, 0));
         boardPanel.setBackground(DEFAULT_BLOCK_COLOR);

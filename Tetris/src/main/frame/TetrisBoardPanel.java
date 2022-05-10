@@ -53,11 +53,10 @@ public class TetrisBoardPanel extends JPanel {
     }
 
     public void colorLinesOnBlockPanels() {
-        boolean[][] board = tetrisBoard.getBoard();
         for (int row = 0; row <= TetrisBoard.MAX_ROW; row++) {
             for (int col = 0; col <= TetrisBoard.MAX_COL; col++)
             {
-                if (board[row][col])
+                if (tetrisBoard.checkPointFilled(row ,col))
                     blockPanels[row][col].setBackground(DEFAULT_LINE_COLOR);
                 else
                     blockPanels[row][col].setBackground(DEFAULT_BLOCK_COLOR);

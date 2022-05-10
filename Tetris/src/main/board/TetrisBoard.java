@@ -12,8 +12,8 @@ public class TetrisBoard implements Serializable {
 
     private final boolean[][] board = new boolean[MAX_ROW + 1][MAX_COL + 1];
 
-    public boolean[][] getBoard() {
-        return board;
+    public boolean checkPointFilled(int row, int col) {
+        return board[row][col];
     }
 
     public int clearLine() {

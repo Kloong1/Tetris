@@ -157,7 +157,6 @@ public class Tetromino {
     }
 
     public Point[] drop() {
-        boolean[][] brd = tetrisBoard.getBoard();
         int minDistance = 20;
         int tempDistance;
         int row, col;
@@ -166,7 +165,7 @@ public class Tetromino {
             tempDistance = 1;
             row = point.getRow();
             col = point.getCol();
-            while (row + tempDistance <= TetrisBoard.MAX_ROW && !brd[row + tempDistance][col])
+            while (row + tempDistance <= TetrisBoard.MAX_ROW && !tetrisBoard.checkPointFilled(row + tempDistance, col))
                 tempDistance++;
             minDistance = Math.min(minDistance, tempDistance - 1);
         }
