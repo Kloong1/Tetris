@@ -42,14 +42,14 @@ public class TetrisBoardPanel extends JPanel {
         }
     }
 
-    public void colorTetrominoOnBlockPanels(Point[] points, Color color) {
+    public void colorPointsOnBlockPanels(Point[] points, Color color) {
         for (Point point : points) {
             blockPanels[point.getRow()][point.getCol()].setBackground(color);
         }
     }
 
-    public void eraseTetrominoFromBlockPanels(Point[] points) {
-        colorTetrominoOnBlockPanels(points, DEFAULT_BLOCK_COLOR);
+    public void erasePointsFromBlockPanels(Point[] points) {
+        colorPointsOnBlockPanels(points, DEFAULT_BLOCK_COLOR);
     }
 
     public void colorLinesOnBlockPanels() {

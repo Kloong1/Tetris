@@ -1,6 +1,7 @@
 package frame;
 
 import controller.TetrisController;
+import tetromino.Tetromino;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,23 +9,19 @@ import java.awt.*;
 public class PlayerStatusPanel extends JPanel {
 
     public final static int WIDTH = 250;
-
     private final static int PANEL_GAP = 30;
 
-    private final TetrisController tetrisController;
+    private final PlayerScorePanel scorePanel;
+    private final PlayerComboPanel comboPanel;
+    private final PlayerNextTetrominoPanel nextTetrominoPanel;
 
-    private PlayerScorePanel scorePanel;
-    private PlayerComboPanel comboPanel;
-    private PlayerNextTetrominoPanel nextTetrominoPanel;
-
-    public PlayerStatusPanel(TetrisController tetrisController) {
-        this.tetrisController = tetrisController;
+    public PlayerStatusPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(CENTER_ALIGNMENT);
 
-        initScorePanel();
-        initComboPanel();
-        initNextTetrominoPanel();
+        scorePanel = new PlayerScorePanel();
+        comboPanel = new PlayerComboPanel();
+        nextTetrominoPanel = new PlayerNextTetrominoPanel();
 
         add(scorePanel);
         add(Box.createRigidArea(new Dimension(0, PANEL_GAP)));
@@ -33,33 +30,21 @@ public class PlayerStatusPanel extends JPanel {
         add(nextTetrominoPanel);
     }
 
-    private void initScorePanel() {
-        scorePanel = new PlayerScorePanel();
+    public void updatePlayerStatus(int score, int combo, Tetromino nextTetromino) {
+        updateScore(score);
+        updateCombo(combo);
+        updateNextTetromino(nextTetromino);
     }
 
-    private void initComboPanel() {
-        comboPanel = new PlayerComboPanel();
+    private void updateScore(int score) {
+        scorePanel.setScore(score);
     }
 
-    private void initNextTetrominoPanel() {
-        nextTetrominoPanel = new PlayerNextTetrominoPanel();
+    private void updateCombo(int combo) {
+        comboPanel.setCombo(combo);
     }
 
-    public void updatePlayerStatus() {
-        updateScore();
-        updateCombo();
-        updateNextTetromino();
-    }
-
-    private void updateScore() {
-        scorePanel.setScore(tetrisController.getScore());
-    }
-
-    private void updateCombo() {
-        comboPanel.setCombo(tetrisController.getCombo());
-    }
-
-    private void updateNextTetromino() {
-        nextTetrominoPanel.setNextTetromino(tetrisController.peekNextTetromino());
+    private void updateNextTetromino(Tetromino nextTetromino) {
+        nextTetrominoPanel.setNextTetromino(nextTetromino);
     }
 }
