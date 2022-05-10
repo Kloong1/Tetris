@@ -18,6 +18,6 @@ public class TetrisApp {
 
         TetrisController tetrisController = new TetrisController(playerPanelDrawingManager, playerTetrisBoard);
 
-        TetrisFrame tetrisFrame = new TetrisFrame(tetrisController, playerPanel, enemyPanel);
+        new TetrisFrame(tetrisController, playerPanel, enemyPanel);
     }
 }

@@ -25,10 +25,6 @@ public class TetrisController {
         panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
     }
 
-    public TetrisBoard getBoard() {
-        return tetrisBoard;
-    }
-
     public boolean isGameOver() {
         return gameOver;
     }
@@ -54,7 +50,8 @@ public class TetrisController {
             panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
             getNextTetromino();
         }
-        panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        if (!gameOver)
+            panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
     }
 
     public void dropTetromino() {
@@ -64,7 +61,8 @@ public class TetrisController {
         panelDrawingManager.drawLinesOnBoardPanel();
         panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
         getNextTetromino();
-        panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        if (!gameOver)
+            panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
     }
 
     public void rotateClockwiseTetromino() {
@@ -82,6 +80,11 @@ public class TetrisController {
     private void getNextTetromino() {
         tetromino = tetrominoGenerator.getTetromino();
         if (tetrisBoard.checkTetrominoOverlappingLine(tetromino.getPoints()))
-            gameOver = true;
+            makeGameOver();
+    }
+
+    private void makeGameOver() {
+        gameOver = true;
+        panelDrawingManager.colorBoardPanelForGameOver();
     }
 }

@@ -64,4 +64,10 @@ public class TetrisBoardPanel extends JPanel {
             }
         }
     }
+
+    public void colorBlockPanelsForGameOver() {
+        for (JPanel[] blockPanelRow : blockPanels)
+            for (JPanel blockPanel : blockPanelRow)
+                blockPanel.setBackground(DEFAULT_LINE_COLOR);
+    }
 }
