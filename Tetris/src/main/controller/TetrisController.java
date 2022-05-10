@@ -47,8 +47,8 @@ public class TetrisController {
             tetrisBoard.drawDroppedTetromino(tetromino.getPoints());
             scoreManager.updateScoreAndCombo(tetrisBoard.clearLine());
             panelDrawingManager.drawLinesOnBoardPanel();
-            panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
             getNextTetromino();
+            panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
         }
         if (!gameOver)
             panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
@@ -59,8 +59,8 @@ public class TetrisController {
         tetrisBoard.drawDroppedTetromino(tetromino.drop());
         scoreManager.updateScoreAndCombo(tetrisBoard.clearLine());
         panelDrawingManager.drawLinesOnBoardPanel();
-        panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
         getNextTetromino();
+        panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
         if (!gameOver)
             panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
     }
