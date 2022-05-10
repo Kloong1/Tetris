@@ -40,22 +40,12 @@ public class Point {
         this.col += col;
     }
 
-    //for test
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Point))
-            return false;
-
-        Point p = (Point)o;
-        return this.row == p.row && this.col == p.col;
-    }
-
-    //for test
-    @Override
-    public String toString() {
-        return "Point{" +
-                "row=" + row +
-                ", col=" + col +
-                '}';
-    }
+//    @Override
+//    protected Point clone(){
+//        Object clone = null;
+//        try {
+//            clone = super.clone();
+//        } catch (CloneNotSupportedException ignored) { }
+//        return (Point)clone;
+//    }
 }

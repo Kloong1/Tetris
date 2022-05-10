@@ -2,6 +2,7 @@ package frame;
 
 import board.TetrisBoard;
 import point.Point;
+import tetromino.Tetromino;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -62,7 +63,14 @@ public class PlayerNextTetrominoPanel extends JPanel {
         }
     }
 
-    public void setNextTetromino() {
+    public void setNextTetromino(Tetromino nextTetromino) {
+        for (JPanel[] blockPanelRow : blockPanels)
+            for (JPanel blockPanel : blockPanelRow)
+                blockPanel.setBackground(DEFAULT_BLOCK_COLOR);
 
+        Point[] points = nextTetromino.getPoints();
+        for (Point point : points) {
+            blockPanels[point.getRow()][point.getCol() - 3].setBackground(nextTetromino.getColor());
+        }
     }
 }

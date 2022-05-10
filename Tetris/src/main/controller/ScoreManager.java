@@ -1,4 +1,4 @@
-package score;
+package controller;
 
 public class ScoreManager {
     private int score = 0;

@@ -15,7 +15,7 @@ public class PlayerKeyAction extends AbstractAction {
     public static final String DROP = "dr";
 
     public static final String ROTATE_CLOCKWISE = "rc";
-    public static final String ROTATE_ANTICLOCKWISE = "race";
+    public static final String ROTATE_ANTICLOCKWISE = "rac";
 
     private final TetrisBoardPanel tetrisBoardPanel;
     private final PlayerStatusPanel playerStatusPanel;
@@ -32,6 +32,9 @@ public class PlayerKeyAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (tetrisController.isGameOver())
+            return;
+
         switch (key) {
             case MOVE_LEFT -> moveTetrominoLeft();
             case MOVE_RIGHT -> moveTetrominoRight();

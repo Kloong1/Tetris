@@ -8,38 +8,51 @@ import java.util.Collections;
 
 public class TetrominoGenerator {
 
-    private final ArrayList<Tetromino> tetrominos = new ArrayList<>(7);
-    private int idx = 0;
     private final TetrisBoard tetrisBoard;
+
+    private ArrayList<Tetromino> currentRoundTetrominos = new ArrayList<>(7);
+    private ArrayList<Tetromino> nextRoundTetrominos = new ArrayList<>(7);
+    private int idx = 0;
 
     public TetrominoGenerator(TetrisBoard tetrisBoard) {
         this.tetrisBoard = tetrisBoard;
-        initTetrominos();
+        initNextRoundTetrominos();
+        swapTetrominosArrayList();
+        initNextRoundTetrominos();
     }
 
     public Tetromino getTetromino() {
-        if (idx >= tetrominos.size()) {
+        if (idx >= currentRoundTetrominos.size()) {
             idx = 0;
-            initTetrominos();
+            swapTetrominosArrayList();
+            initNextRoundTetrominos();
         }
-        return tetrominos.get(idx++);
+        return currentRoundTetrominos.get(idx++);
     }
 
     public Tetromino peekNextTetromino() {
-        if (idx >= tetrominos.size())
-            return tetrominos.get(0);
-        return tetrominos.get(idx);
+        if (idx >= currentRoundTetrominos.size()) {
+            return nextRoundTetrominos.get(0);
+        }
+        return currentRoundTetrominos.get(idx);
     }
 
-    private void initTetrominos() {
-        tetrominos.clear();
-        tetrominos.add(new TetrominoI(tetrisBoard));
-        tetrominos.add(new TetrominoJ(tetrisBoard));
-        tetrominos.add(new TetrominoL(tetrisBoard));
-        tetrominos.add(new TetrominoO(tetrisBoard));
-        tetrominos.add(new TetrominoS(tetrisBoard));
-        tetrominos.add(new TetrominoT(tetrisBoard));
-        tetrominos.add(new TetrominoZ(tetrisBoard));
-        Collections.shuffle(tetrominos);
+    private void initNextRoundTetrominos() {
+        nextRoundTetrominos.clear();
+        nextRoundTetrominos.add(new TetrominoI(tetrisBoard));
+        nextRoundTetrominos.add(new TetrominoJ(tetrisBoard));
+        nextRoundTetrominos.add(new TetrominoL(tetrisBoard));
+        nextRoundTetrominos.add(new TetrominoO(tetrisBoard));
+        nextRoundTetrominos.add(new TetrominoS(tetrisBoard));
+        nextRoundTetrominos.add(new TetrominoT(tetrisBoard));
+        nextRoundTetrominos.add(new TetrominoZ(tetrisBoard));
+        Collections.shuffle(nextRoundTetrominos);
+    }
+
+    private void swapTetrominosArrayList() {
+        ArrayList<Tetromino> temp;
+        temp = currentRoundTetrominos;
+        currentRoundTetrominos = nextRoundTetrominos;
+        nextRoundTetrominos = temp;
     }
 }

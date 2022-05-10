@@ -67,14 +67,14 @@ public class Tetromino {
         moveTetrominoInsideColumn(rotatedPoints, nextCenterPoint, minCol, maxCol);
         moveTetrominoInsideRow(rotatedPoints, nextCenterPoint, minRow, maxRow);
 
-        if (checkTetrominoOverlappingLine(rotatedPoints)) {
+        if (tetrisBoard.checkTetrominoOverlappingLine(rotatedPoints)) {
             for (Point rotatedPoint : rotatedPoints) {
                 rotatedPoint.addRow(-2);
                 if (rotatedPoint.getRow() < 0) {
                     return points;
                 }
             }
-            if (checkTetrominoOverlappingLine(rotatedPoints)) {
+            if (tetrisBoard.checkTetrominoOverlappingLine(rotatedPoints)) {
                 return points;
             }
         }
@@ -116,7 +116,7 @@ public class Tetromino {
         centerPoint.addCol(1);
         for (int i = 0; i < 4; i++) {
             points[i].addCol(1);
-            if (points[i].getCol() > TetrisBoard.MAX_COL || checkPointOverlappingLine(points[i])) {
+            if (points[i].getCol() > TetrisBoard.MAX_COL || tetrisBoard.checkPointOverlappingLine(points[i])) {
                 centerPoint.addCol(-1);
                 for (; i >= 0; i--)
                     points[i].addCol(-1);
@@ -131,7 +131,7 @@ public class Tetromino {
         centerPoint.addCol(-1);
         for (int i = 0; i < 4; i++) {
             points[i].addCol(-1);
-            if (points[i].getCol() < 0 || checkPointOverlappingLine(points[i])) {
+            if (points[i].getCol() < 0 || tetrisBoard.checkPointOverlappingLine(points[i])) {
                 centerPoint.addCol(1);
                 for (; i >= 0; i--)
                     points[i].addCol(1);
@@ -146,7 +146,7 @@ public class Tetromino {
         centerPoint.addRow(1);
         for (int i = 0; i < 4; i++) {
             points[i].addRow(1);
-            if (points[i].getRow() > TetrisBoard.MAX_ROW || checkPointOverlappingLine(points[i])) {
+            if (points[i].getRow() > TetrisBoard.MAX_ROW || tetrisBoard.checkPointOverlappingLine(points[i])) {
                 centerPoint.addRow(-1);
                 for (; i >= 0; i--)
                     points[i].addRow(-1);
@@ -178,19 +178,5 @@ public class Tetromino {
         }
 
         return points;
-    }
-
-    private boolean checkPointOverlappingLine(Point point) {
-        return tetrisBoard.getBoard()[point.getRow()][point.getCol()];
-    }
-
-    private boolean checkTetrominoOverlappingLine(Point[] points) {
-        boolean[][] brd = tetrisBoard.getBoard();
-
-        for (Point point : points) {
-            if (brd[point.getRow()][point.getCol()])
-                return true;
-        }
-        return false;
     }
 }

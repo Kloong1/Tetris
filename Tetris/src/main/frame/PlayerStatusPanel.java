@@ -60,7 +60,6 @@ public class PlayerStatusPanel extends JPanel {
     }
 
     private void updateNextTetromino() {
-        //need parameter from tetrisController
-        nextTetrominoPanel.setNextTetromino();
+        nextTetrominoPanel.setNextTetromino(tetrisController.peekNextTetromino());
     }
 }

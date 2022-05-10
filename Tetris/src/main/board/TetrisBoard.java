@@ -37,6 +37,18 @@ public class TetrisBoard implements Serializable {
             board[point.getRow()][point.getCol()] = true;
     }
 
+    public boolean checkPointOverlappingLine(Point point) {
+        return board[point.getRow()][point.getCol()];
+    }
+
+    public boolean checkTetrominoOverlappingLine(Point[] points) {
+        for (Point point : points) {
+            if (board[point.getRow()][point.getCol()])
+                return true;
+        }
+        return false;
+    }
+
     private void moveDownLine(int lineIdx, int clearedLines) {
         System.arraycopy(board[lineIdx], 0, board[lineIdx + clearedLines], 0, MAX_COL + 1);
     }
