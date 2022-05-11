@@ -30,15 +30,14 @@ public class PlayerKeyAction extends AbstractAction {
             return;
 
         switch (key) {
-            case MOVE_LEFT -> moveTetrominoLeft();
-            case MOVE_RIGHT -> moveTetrominoRight();
-            case MOVE_DOWN -> moveTetrominoDown();
-            case DROP -> dropTetromino();
-            case ROTATE_CLOCKWISE -> rotateClockwiseTetromino();
-            case ROTATE_ANTICLOCKWISE -> rotateAnticlockwiseTetromino();
+            case MOVE_LEFT: moveTetrominoLeft(); break;
+            case MOVE_RIGHT: moveTetrominoRight(); break;
+            case MOVE_DOWN: moveTetrominoDown(); break;
+            case DROP: dropTetromino(); break;
+            case ROTATE_CLOCKWISE: rotateClockwiseTetromino(); break;
+            case ROTATE_ANTICLOCKWISE: rotateAnticlockwiseTetromino(); break;
         }
     }
-
 
     private void moveTetrominoRight() {
         tetrisController.moveTetrominoRight();

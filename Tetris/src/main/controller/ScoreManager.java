@@ -22,12 +22,14 @@ public class ScoreManager {
     }
 
     private int calculateScore(int clearedLines) {
-        return switch (clearedLines) {
-            case 1 -> 100 + combo * 100;
-            case 2 -> 300 + combo * 100;
-            case 3 -> 600 + combo * 100;
-            case 4 -> 1000 + combo * 100;
-            default -> 0;
-        };
+        int calculatedScore;
+        switch (clearedLines) {
+            case 1: calculatedScore = 100 + combo * 100; break;
+            case 2: calculatedScore = 300 + combo * 100; break;
+            case 3: calculatedScore = 600 + combo * 100; break;
+            case 4: calculatedScore = 1000 + combo * 100; break;
+            default: calculatedScore = 0;
+        }
+        return calculatedScore;
     }
 }
