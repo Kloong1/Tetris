@@ -4,6 +4,8 @@ import board.TetrisBoard;
 import drawing.PanelDrawingManager;
 import tetromino.Tetromino;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class TetrisController {
     private final TetrisBoard tetrisBoard;
     private final TetrominoGenerator tetrominoGenerator;
@@ -12,6 +14,8 @@ public class TetrisController {
     private Tetromino tetromino;
 
     private boolean gameOver = false;
+
+    private final ReentrantLock controllerLock = new ReentrantLock();
 
     public TetrisController(PanelDrawingManager panelDrawingManager, TetrisBoard tetrisBoard) {
         this.panelDrawingManager = panelDrawingManager;
@@ -30,18 +34,23 @@ public class TetrisController {
     }
 
     public void moveTetrominoLeft() {
+        controllerLock.lock();
         panelDrawingManager.eraseTetrominoFromBoardPanel(tetromino);
         tetromino.moveLeft();
         panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        controllerLock.unlock();
     }
 
     public void moveTetrominoRight() {
+        controllerLock.lock();
         panelDrawingManager.eraseTetrominoFromBoardPanel(tetromino);
         tetromino.moveRight();
         panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        controllerLock.unlock();
     }
 
     public void moveTetrominoDown() {
+        controllerLock.lock();
         panelDrawingManager.eraseTetrominoFromBoardPanel(tetromino);
         if (tetromino.moveDown() == null) {
             tetrisBoard.drawDroppedTetromino(tetromino.getPoints());
@@ -52,9 +61,11 @@ public class TetrisController {
         }
         if (!gameOver)
             panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        controllerLock.unlock();
     }
 
     public void dropTetromino() {
+        controllerLock.lock();
         panelDrawingManager.eraseTetrominoFromBoardPanel(tetromino);
         tetrisBoard.drawDroppedTetromino(tetromino.drop());
         scoreManager.updateScoreAndCombo(tetrisBoard.clearLine());
@@ -63,28 +74,37 @@ public class TetrisController {
         panelDrawingManager.updatePlayerStatusPanel(scoreManager.getScore(), scoreManager.getCombo(), tetrominoGenerator.peekNextTetromino());
         if (!gameOver)
             panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        controllerLock.unlock();
     }
 
     public void rotateClockwiseTetromino() {
+        controllerLock.lock();
         panelDrawingManager.eraseTetrominoFromBoardPanel(tetromino);
         tetromino.rotateClockwise();
         panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        controllerLock.unlock();
     }
 
     public void rotateAnticlockwiseTetromino() {
+        controllerLock.lock();
         panelDrawingManager.eraseTetrominoFromBoardPanel(tetromino);
         tetromino.rotateAnticlockwise();
         panelDrawingManager.drawTetrominoOnBoardPanel(tetromino);
+        controllerLock.unlock();
     }
 
     private void getNextTetromino() {
+        controllerLock.lock();
         tetromino = tetrominoGenerator.getTetromino();
         if (tetrisBoard.checkTetrominoOverlappingLine(tetromino.getPoints()))
             makeGameOver();
+        controllerLock.unlock();
     }
 
     private void makeGameOver() {
+        controllerLock.lock();
         gameOver = true;
         panelDrawingManager.colorBoardPanelForGameOver();
+        controllerLock.unlock();
     }
 }

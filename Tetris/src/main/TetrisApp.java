@@ -1,4 +1,5 @@
 import board.TetrisBoard;
+import controller.TetrominoMoverThread;
 import drawing.PanelDrawingManager;
 import controller.TetrisController;
 import frame.*;
@@ -19,5 +20,7 @@ public class TetrisApp {
         TetrisController tetrisController = new TetrisController(playerPanelDrawingManager, playerTetrisBoard);
 
         new TetrisFrame(tetrisController, playerPanel, enemyPanel);
+
+        new TetrominoMoverThread(tetrisController).start();
     }
 }

@@ -26,11 +26,11 @@ public class PanelDrawingManager {
         tetrisBoardPanel.colorLinesOnBlockPanels();
     }
 
-    public void colorBoardPanelForGameOver() {
-        tetrisBoardPanel.colorBlockPanelsForGameOver();
-    }
-
     public void updatePlayerStatusPanel(int score, int combo, Tetromino nextTetromino) {
         playerStatusPanel.updatePlayerStatus(score, combo, nextTetromino);
+    }
+
+    public void colorBoardPanelForGameOver() {
+        tetrisBoardPanel.colorBlockPanelsForGameOver();
     }
 }
