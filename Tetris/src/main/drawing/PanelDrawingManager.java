@@ -32,5 +32,7 @@ public class PanelDrawingManager {
 
     public void colorBoardPanelForGameOver() {
         tetrisBoardPanel.colorBlockPanelsForGameOver();
+        tetrisBoardPanel.repaint();
+        tetrisBoardPanel.revalidate();
     }
 }
