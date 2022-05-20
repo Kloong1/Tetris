@@ -6,3 +6,9 @@ Java Swing으로 구현한 테트리스입니다.
 - SRP를 지키기 위해 클래스를 세분화했으며, 클래스 간 의존관계를 단순화하기 위헤 노력했습니다
 - OCP, DIP를 고려하지는 않았습니다.
 - 멀티 스레드와 소켓을 활용하여 1:1 대결까지 구현할 예정입니다. 현재는 1인용만 가능합니다.
+
+## Build & Run
+```shell
+javac --release 8 -d ./Tetris/out/ -cp ./Tetris/src/main/ ./Tetris/src/main/TetrisApp.java
+java -cp ./Tetris/out TetrisApp
+```
