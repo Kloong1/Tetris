@@ -39,13 +39,4 @@ public class Point {
     public void addCol(int col) {
         this.col += col;
     }
-
-//    @Override
-//    protected Point clone(){
-//        Object clone = null;
-//        try {
-//            clone = super.clone();
-//        } catch (CloneNotSupportedException ignored) { }
-//        return (Point)clone;
-//    }
 }

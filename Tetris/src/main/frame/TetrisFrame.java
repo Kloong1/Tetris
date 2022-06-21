@@ -15,15 +15,12 @@ public class TetrisFrame extends JFrame {
     private final static int CONTAINER_PADDING = 15;
     private final static int PLAYER_ENEMY_GAP = 15;
 
-    private final TetrisController tetrisController;
     private final JPanel mainPanel;
 
     public TetrisFrame(TetrisController tetrisController, PlayerPanel playerPanel, EnemyPanel enemyPanel) {
-        this.tetrisController = tetrisController;
-
         mainPanel = new JPanel();
         initMainPanel(playerPanel, enemyPanel);
-        initMainPanelKeyBindings();
+        initMainPanelKeyBindings(tetrisController);
         getContentPane().add(mainPanel);
 
         initFrame();
@@ -44,7 +41,7 @@ public class TetrisFrame extends JFrame {
         mainPanel.add(enemyPanel);
     }
 
-    private void initMainPanelKeyBindings() {
+    private void initMainPanelKeyBindings(TetrisController tetrisController) {
         InputMap inputMap = mainPanel.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
 
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), PlayerKeyAction.MOVE_LEFT);
