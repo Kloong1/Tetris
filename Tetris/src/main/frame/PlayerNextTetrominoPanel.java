@@ -1,8 +1,8 @@
-package frame;
+package main.frame;
 
-import board.TetrisBoard;
-import point.Point;
-import tetromino.Tetromino;
+import main.board.TetrisBoard;
+import main.point.Point;
+import main.tetromino.Tetromino;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,6 +1,6 @@
-package board;
+package main.board;
 
-import point.Point;
+import main.point.Point;
 
 import java.io.Serializable;
 import java.util.Arrays;

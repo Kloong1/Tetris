@@ -1,7 +1,7 @@
-package tetromino;
+package main.tetromino;
 
-import board.TetrisBoard;
-import point.Point;
+import main.board.TetrisBoard;
+import main.point.Point;
 
 import java.awt.*;
 

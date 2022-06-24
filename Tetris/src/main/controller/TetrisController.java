@@ -1,8 +1,8 @@
-package controller;
+package main.controller;
 
-import board.TetrisBoard;
-import drawing.PanelDrawingManager;
-import tetromino.Tetromino;
+import main.board.TetrisBoard;
+import main.drawing.PanelDrawingManager;
+import main.tetromino.Tetromino;
 
 import java.util.concurrent.locks.ReentrantLock;
 

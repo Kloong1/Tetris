@@ -1,20 +1,18 @@
-package controller;
+package main.controller;
 
-public class TetrominoMoverThread extends Thread {
+public class TetrominoMoveDownThread extends Thread {
+
     private final TetrisController tetrisController;
 
-    private int delayDecrease = 10;
     private int moveDelay = 1000;
 
-    public TetrominoMoverThread(TetrisController tetrisController) {
+    private static final int MIN_MOVE_DELAY = 200;
+    private static final int DELAY_DECREASE = 10;
+
+    public TetrominoMoveDownThread(TetrisController tetrisController) {
         this.tetrisController = tetrisController;
         setDaemon(true);
     }
-
-    private void setDelayDecrease() {
-        delayDecrease = moveDelay / 100;
-    }
-
     @Override
     public void run() {
         while (true) {
@@ -22,11 +20,13 @@ public class TetrominoMoverThread extends Thread {
                 sleep(moveDelay);
                 if (!tetrisController.isGameOver()) {
                     tetrisController.moveTetrominoDown();
-                    setDelayDecrease();
-                    if (moveDelay > 200)
-                        moveDelay -= delayDecrease;
                 }
             } catch (InterruptedException ignored) { }
         }
+    }
+
+    public void speedUp() {
+        if (moveDelay > MIN_MOVE_DELAY)
+            moveDelay -= DELAY_DECREASE;
     }
 }

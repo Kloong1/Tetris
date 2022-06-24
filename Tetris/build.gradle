@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.kloong'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+dependencies {
+    //Jackson
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2.2'
+    //Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+}

@@ -1,7 +1,7 @@
-package frame;
+package main.frame;
 
-import controller.TetrisController;
-import tetromino.Tetromino;
+import main.controller.TetrisController;
+import main.tetromino.Tetromino;
 
 import javax.swing.*;
 import java.awt.*;

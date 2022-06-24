@@ -1,8 +1,11 @@
-import board.TetrisBoard;
-import controller.TetrominoMoverThread;
-import drawing.PanelDrawingManager;
-import controller.TetrisController;
-import frame.*;
+package main;
+
+import main.board.TetrisBoard;
+import main.controller.TetrisDifficultyControlTimer;
+import main.controller.TetrominoMoveDownThread;
+import main.drawing.PanelDrawingManager;
+import main.controller.TetrisController;
+import main.frame.*;
 
 public class TetrisApp {
     public static void main(String[] args) {
@@ -21,6 +24,9 @@ public class TetrisApp {
 
         new TetrisFrame(tetrisController, playerPanel, enemyPanel);
 
-        new TetrominoMoverThread(tetrisController).start();
+        TetrominoMoveDownThread tetrominoMoveDownThread = new TetrominoMoveDownThread(tetrisController);
+        tetrominoMoveDownThread.start();
+
+        new TetrisDifficultyControlTimer(tetrominoMoveDownThread).start();
     }
 }

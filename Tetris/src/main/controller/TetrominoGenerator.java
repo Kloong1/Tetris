@@ -1,7 +1,7 @@
-package controller;
+package main.controller;
 
-import board.TetrisBoard;
-import tetromino.*;
+import main.board.TetrisBoard;
+import main.tetromino.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

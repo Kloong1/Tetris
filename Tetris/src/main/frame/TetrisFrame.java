@@ -1,7 +1,7 @@
-package frame;
+package main.frame;
 
-import controller.TetrisController;
-import keyaction.PlayerKeyAction;
+import main.controller.TetrisController;
+import main.keyaction.PlayerKeyAction;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

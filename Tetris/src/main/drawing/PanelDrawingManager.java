@@ -1,8 +1,8 @@
-package drawing;
+package main.drawing;
 
-import frame.PlayerStatusPanel;
-import frame.TetrisBoardPanel;
-import tetromino.Tetromino;
+import main.frame.PlayerStatusPanel;
+import main.frame.TetrisBoardPanel;
+import main.tetromino.Tetromino;
 
 public class PanelDrawingManager {
     private final TetrisBoardPanel tetrisBoardPanel;

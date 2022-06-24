@@ -1,6 +1,6 @@
-package keyaction;
+package main.keyaction;
 
-import controller.TetrisController;
+import main.controller.TetrisController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

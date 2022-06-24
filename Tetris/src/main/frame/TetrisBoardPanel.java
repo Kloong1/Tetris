@@ -1,7 +1,7 @@
-package frame;
+package main.frame;
 
-import board.TetrisBoard;
-import point.Point;
+import main.board.TetrisBoard;
+import main.point.Point;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
