@@ -1,3 +1,9 @@
-/Tetris/out/
-/Tetris/src/test/
+Tetris/out/
+Tetris/src/test/
+Tetris/build/
+Tetris/.idea/
+Tetris/.gradle/
+
 .DS_Store
+.idea
+Tetris.iml
