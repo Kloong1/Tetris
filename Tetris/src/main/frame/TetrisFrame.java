@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class TetrisFrame extends JFrame {
 
-    private final static int WIDTH = 1100;
+    private final static int WIDTH = 1400;
     private final static int HEIGHT = 700;
 
     private final static int CONTAINER_PADDING = 15;
@@ -17,9 +17,9 @@ public class TetrisFrame extends JFrame {
 
     private final JPanel mainPanel;
 
-    public TetrisFrame(TetrisController tetrisController, PlayerPanel playerPanel, EnemyPanel enemyPanel) {
+    public TetrisFrame(TetrisController tetrisController, PlayerPanel playerPanel, PlayerPanel enemyPlayerPanel) {
         mainPanel = new JPanel();
-        initMainPanel(playerPanel, enemyPanel);
+        initMainPanel(playerPanel, enemyPlayerPanel);
         initMainPanelKeyBindings(tetrisController);
         getContentPane().add(mainPanel);
 
@@ -32,13 +32,13 @@ public class TetrisFrame extends JFrame {
         setVisible(true);
     }
 
-    private void initMainPanel(PlayerPanel playerPanel, EnemyPanel enemyPanel) {
+    private void initMainPanel(PlayerPanel playerPanel, PlayerPanel enemyPlayerPanel) {
         mainPanel.setBorder(new EmptyBorder(CONTAINER_PADDING, CONTAINER_PADDING, CONTAINER_PADDING, CONTAINER_PADDING));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
         mainPanel.add(playerPanel);
         mainPanel.add(Box.createRigidArea(new Dimension(PLAYER_ENEMY_GAP, 0)));
-        mainPanel.add(enemyPanel);
+        mainPanel.add(enemyPlayerPanel);
     }
 
     private void initMainPanelKeyBindings(TetrisController tetrisController) {

@@ -1,9 +1,5 @@
 package main.frame;
 
-import main.board.TetrisBoard;
-import main.controller.TetrisController;
-import main.keyaction.PlayerKeyAction;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;

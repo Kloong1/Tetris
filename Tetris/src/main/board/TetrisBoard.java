@@ -2,13 +2,16 @@ package main.board;
 
 import main.point.Point;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
-public class TetrisBoard implements Serializable {
+public class TetrisBoard {
 
-    public static final transient int MAX_COL = 9;
-    public static final transient int MAX_ROW = 19;
+    public static final int MAX_COL = 9;
+    public static final int MAX_ROW = 19;
+
+    public boolean[][] getBoard() {
+        return board;
+    }
 
     private final boolean[][] board = new boolean[MAX_ROW + 1][MAX_COL + 1];
 

@@ -30,10 +30,36 @@ public class PlayerStatusPanel extends JPanel {
         add(nextTetrominoPanel);
     }
 
+    public PlayerStatusPanel(boolean isEnemyPanel) {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setAlignmentX(CENTER_ALIGNMENT);
+
+        scorePanel = new PlayerScorePanel();
+        comboPanel = new PlayerComboPanel();
+
+        add(scorePanel);
+        add(Box.createRigidArea(new Dimension(0, PANEL_GAP)));
+        add(comboPanel);
+
+        if (isEnemyPanel) {
+            nextTetrominoPanel = null;
+        }
+        else {
+            nextTetrominoPanel = new PlayerNextTetrominoPanel();
+            add(Box.createRigidArea(new Dimension(0, PANEL_GAP)));
+            add(nextTetrominoPanel);
+        }
+    }
+
     public void updatePlayerStatus(int score, int combo, Tetromino nextTetromino) {
         updateScore(score);
         updateCombo(combo);
         updateNextTetromino(nextTetromino);
+    }
+
+    public void updateEnemyPlayerStatus(int score, int combo) {
+        updateScore(score);
+        updateCombo(combo);
     }
 
     private void updateScore(int score) {

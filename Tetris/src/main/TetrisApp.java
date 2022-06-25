@@ -16,13 +16,14 @@ public class TetrisApp {
 
         TetrisBoard enemyTetrisBoard = new TetrisBoard();
         TetrisBoardPanel enemyTetrisBoardPanel = new TetrisBoardPanel(enemyTetrisBoard);
-        EnemyPanel enemyPanel = new EnemyPanel(enemyTetrisBoardPanel);
+        PlayerStatusPanel enemyPlayerStatusPanel = new PlayerStatusPanel(true);
+        PlayerPanel enemyPlayerPanel = new PlayerPanel(enemyTetrisBoardPanel, enemyPlayerStatusPanel);
 
         PanelDrawingManager playerPanelDrawingManager = new PanelDrawingManager(playerTetrisBoardPanel, playerStatusPanel);
 
         TetrisController tetrisController = new TetrisController(playerPanelDrawingManager, playerTetrisBoard);
 
-        new TetrisFrame(tetrisController, playerPanel, enemyPanel);
+        new TetrisFrame(tetrisController, playerPanel, enemyPlayerPanel);
 
         TetrominoMoveDownThread tetrominoMoveDownThread = new TetrominoMoveDownThread(tetrisController);
         tetrominoMoveDownThread.start();
