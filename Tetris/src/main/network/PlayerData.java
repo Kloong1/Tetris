@@ -1,4 +1,4 @@
-package main.dto;
+package main.network;
 
 import lombok.Getter;
 
